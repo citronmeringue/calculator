@@ -1,67 +1,45 @@
-//const btnNumbers = document.getElementsByClassName('numbers');
-//const btnOperators = document.getElementsByClassName('operator');
 const btnClear = document.getElementById('clear');
 const btnEqual = document.getElementById('equal');
 const btnDecimal = document.getElementById('decimal');
 const displayContent = document.getElementById('display');
 
-//const displayContent = document.querySelector('.display');
 const boxBody = document.querySelector('#body-calc');
 const btnNumbers = boxBody.querySelectorAll('.numbers');
 const btnOperators = document.querySelectorAll('.operator');
 
-
 displayContent.value = "0"
-init_displayvalue = displayContent.value
 
 var first_op = null;
 var operator = null;
 var second_op = null;
 
+
 btnNumbers.forEach((button) => {
-            button.addEventListener('click', e=> {
-               if (displayContent.value == 0 || operator !==  null){
+            button.addEventListener('click', e=> {              
+               if (displayContent.value == 0 || (operator !==  null && displayContent.value == first_op)   ){
                     displayContent.value = ""
                 }
                 displayContent.value += button.id;
             });
 });
 
-   
-
-btnDecimal.addEventListener('click', e=> {
-    if (!displayContent.value.includes(',')){
-        displayContent.value += btnDecimal.innerText;
-    }
-});
-
-function clear(){
-    btnClear.addEventListener('click', e=> {
-        displayContent.value = 0;
-        first_op = null;
-        second_op = null;
-        operator = null;
-//        console.log(first_op + " / " + second_op)
-    });
-};
 
 btnOperators.forEach((button) => {
-    button.addEventListener('click', e=> {
-        operator = button.innerHTML; 
-        console.log(first_op)
-        console.log(second_op)
-        
+    button.addEventListener('click', e=> { 
         if(second_op === null){
             first_op = displayContent.value;
             second_op = 0;
-            console.log("result = " + first_op)
+            console.log("a = " + first_op)
+            operator = button.innerHTML;   
             return
         }
+        
+        second_op = displayContent.value;
 
-            second_op = displayContent.value;
-            first_op = operate(Number(first_op), Number(second_op), operator);
-            console.log("result = " + first_op)
-            displayContent.value = first_op; 
+        first_op = operate(Number(first_op), Number(second_op), operator);
+        operator = button.innerHTML;  
+        console.log("a = " + first_op)
+        displayContent.value = first_op; 
 
     });
 });
@@ -82,12 +60,21 @@ btnEqual.addEventListener('click', e=> {
     return test
 
 });
-
+btnDecimal.addEventListener('click', e=> {
+    if (!displayContent.value.includes(',')){
+        displayContent.value += btnDecimal.innerText;
+    }
+});
+function clear(){
+    btnClear.addEventListener('click', e=> {
+        displayContent.value = 0;
+        first_op = null;
+        second_op = null;
+        operator = null;
+    });
+};
 clear();
 
-
-
-//---------------------------------------------------------
 
 function add(a,b){
     return a + b;
@@ -104,7 +91,6 @@ function multiply(a,b){
 function divide(a,b){
     return a/b;
 }
-
 
 function operate(a,b, operator){
     switch(operator){
@@ -123,15 +109,3 @@ function operate(a,b, operator){
     }
     return result;
 }
-
-    /*    first_op = displayContent.value;
-        console.log("first operand = " + first_op)
-        first_op_num = Number(first_op);
-        operator = button.innerHTML; 
-        displayContent.value = "0"; 
-    
-        console.log("sec operand = " + second_op)
-        second_op = operate(first_op_num, second_op, operator)
-        console.log("sec operand = " + second_op)
-*/        //console.log(second_op)
-        //displayContent.value = second_op; 

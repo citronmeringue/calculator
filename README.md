@@ -1,0 +1,1 @@
+- clique plusieurs fois sur les operateurs, continue de calculer => il faut bloquer 
