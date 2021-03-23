@@ -13,14 +13,20 @@ var first_op = null;
 var operator = null;
 var second_op = null;
 
+function roundDecimal(number){
+    return Number((number).toFixed(5))
+}
 
 btnNumbers.forEach((button) => {
-            button.addEventListener('click', e=> {              
-               if (displayContent.value == 0 || (operator !==  null && displayContent.value == first_op)   ){
-                    displayContent.value = ""
-                }
-                displayContent.value += button.id;
-            });
+    button.addEventListener('click', e=> {    
+        console.log(displayContent.value )
+        console.log(first_op )
+                  
+        if (displayContent.value == 0 || (operator !==  null && displayContent.value == first_op)   ){
+            displayContent.value = ""
+        }
+        displayContent.value += button.id;
+    });
 });
 
 
@@ -35,11 +41,11 @@ btnOperators.forEach((button) => {
         }
         
         second_op = displayContent.value;
-
         first_op = operate(Number(first_op), Number(second_op), operator);
         operator = button.innerHTML;  
         console.log("a = " + first_op)
-        displayContent.value = first_op; 
+        console.log("b = " + second_op)
+        displayContent.value = roundDecimal(first_op); 
 
     });
 });
@@ -55,13 +61,14 @@ btnEqual.addEventListener('click', e=> {
 
     console.log("------------------------")
     var test = operate(first_op, second_op, operator);
-    displayContent.value = test;
+    displayContent.value = roundDecimal(test);
     console.log(test)
-    return test
+    //return test
 
 });
+
 btnDecimal.addEventListener('click', e=> {
-    if (!displayContent.value.includes(',')){
+    if (!displayContent.value.includes('.')){
         displayContent.value += btnDecimal.innerText;
     }
 });
@@ -89,6 +96,7 @@ function multiply(a,b){
 }
 
 function divide(a,b){
+    if(b == 0) throw displayContent.value = "Can't be divided by zero !";
     return a/b;
 }
 
