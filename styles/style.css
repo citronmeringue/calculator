@@ -1,0 +1,28 @@
+#body-calc {
+    background-color: azure;
+    height: 100%;
+    border-style: double;
+}
+
+#btn-box{
+    display : grid;
+    
+    grid-template-columns: repeat(4,auto);
+    height: 40em;
+    border-style: double;
+    width: 50%;
+}
+
+#display{
+    text-align: right;
+    
+    border-style: double;
+    height: 5em;
+    width: 50%;
+}
+
+/*
+button{
+    background-color: aqua;
+
+}*/
