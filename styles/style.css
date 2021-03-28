@@ -4,22 +4,17 @@
     align-items: center;
     background-color: #F6F6EB;
     box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.19);
-   /* border-style: double;
-    border-color: blueviolet;*/
+    border-style: double;
+    border-color: blueviolet;
     height: 100%;
     border-style: double;
     border-radius: 50px;
-    margin-right:25%;
-    margin-left:25%;
-
-    padding-left:-25%;
-    padding-left:-25%;
-
+    margin-right:30%;
+    margin-left:30%;
 }
 
 #ctn-display{
     display: flex;
-    
     width: 100%;
     justify-content: center;
     padding-top: 10px;
@@ -32,7 +27,7 @@
     border-style: double;
     border-color: tomato;
     height: 3em;
-    width: 80%;
+    width: 90%;
 }
 
 input[type="text"]{
@@ -42,21 +37,26 @@ input[type="text"]{
 }
 
 #ctn-clear{
-    display: flex;
+    display: grid;
+    grid-template-columns: 50% 50%;
     justify-content: center;
-    width: 80%;
+    width: 90%;
+    height: 4em;
+    padding-top: 15px;
+  
+    padding-bottom: 10px;   
+
 }
-#clear{
-    border-radius: 10px;
-    margin: 5px 5px 5px 5px;
-    width: 100%;
-    height : 45px;
+#del{
+    font-size: 35px;
+    padding-bottom: 9px;
+    
 }
 #btn-box{
     display : grid;
     grid-template-columns: repeat(4,auto);
-    height: 30em;
-    width: 80%;
+    height: 23em;
+    width: 90%;
     padding-top: 5px;
     padding-bottom: 10px;
 
@@ -68,6 +68,9 @@ input[type="text"]{
     background-color: orange;
 }
 
+.keysClear{
+    border-radius: 10px;
+}
 button{
     background-color: #BAE1FF;
     border-style: double;
