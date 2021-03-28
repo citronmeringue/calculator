@@ -8,63 +8,50 @@ const btnNumbers = boxBody.querySelectorAll('.numbers');
 const btnOperators = document.querySelectorAll('.operator');
 
 displayContent.value = "0"
-
 var first_op = null;
 var operator = null;
 var second_op = null;
 
-function roundDecimal(number){
-    return Number((number).toFixed(5))
-}
-
 btnNumbers.forEach((button) => {
-    button.addEventListener('click', e=> {    
-        console.log(displayContent.value )
-        console.log(first_op )
-                  
-        if (displayContent.value == 0 || (operator !==  null && displayContent.value == first_op)   ){
-            displayContent.value = ""
+    button.addEventListener('click', e=> {   
+        btnOperators.forEach(e => e.removeAttribute("disabled"))
+
+        if (displayContent.value == 0 || (operator !==  null && displayContent.value == first_op)){
+            displayContent.value = "";
         }
         displayContent.value += button.id;
+        console.log(displayContent.value)
     });
 });
 
 
 btnOperators.forEach((button) => {
     button.addEventListener('click', e=> { 
-        if(second_op === null){
-            first_op = displayContent.value;
-            second_op = 0;
-            console.log("a = " + first_op)
-            operator = button.innerHTML;   
+        if(first_op === null && second_op === null){
+            first_op = Number(displayContent.value);
+            operator = button.innerHTML;
             return
         }
-        
-        second_op = displayContent.value;
-        first_op = operate(Number(first_op), Number(second_op), operator);
-        operator = button.innerHTML;  
-        console.log("a = " + first_op)
-        console.log("b = " + second_op)
-        displayContent.value = roundDecimal(first_op); 
 
+        second_op = displayContent.value;
+        output = operate(Number(first_op), Number(second_op), operator);      
+        operator = button.innerHTML;  
+        
+        displayContent.value = output; 
+        first_op = output
+
+        btnOperators.forEach(e => e.setAttribute("disabled", "disabled"));
     });
 });
 
-
-btnEqual.addEventListener('click', e=> {
-    console.log("first operand = " + first_op)
+btnEqual.addEventListener('click', e=> { 
     first_op = Number(first_op);
-    console.log("operator = " + operator)
     second_op = displayContent.value;
-    console.log("second operand = " + second_op)
     second_op = Number(second_op);
 
-    console.log("------------------------")
-    var test = operate(first_op, second_op, operator);
-    displayContent.value = roundDecimal(test);
-    console.log(test)
-    //return test
-
+    output = operate(first_op, second_op, operator);
+    displayContent.value = output;
+    btnEqual.setAttribute("disabled","disabled");
 });
 
 btnDecimal.addEventListener('click', e=> {
@@ -72,15 +59,22 @@ btnDecimal.addEventListener('click', e=> {
         displayContent.value += btnDecimal.innerText;
     }
 });
+
+btnClear.addEventListener('click',clear);
+
 function clear(){
-    btnClear.addEventListener('click', e=> {
-        displayContent.value = 0;
-        first_op = null;
-        second_op = null;
-        operator = null;
-    });
+    btnEqual.removeAttribute("disabled");
+    displayContent.value = 0;
+    first_op = null;
+    second_op = null;
+    operator = null;
 };
-clear();
+
+function reset(){
+    first_op = null;
+    second_op = null;
+    operator = null;
+}
 
 
 function add(a,b){
@@ -103,17 +97,15 @@ function divide(a,b){
 function operate(a,b, operator){
     switch(operator){
         case "+":
-            result = add(a,b);
-            break;
+            return add(a,b);
+
         case "-":
-            result = substract(a,b);
-            break;
+            return substract(a,b);
+
         case "*":
-            result = multiply(a,b);
-            break;
+            return multiply(a,b);
+
         case "/":
-            result = divide(a,b);
-            break;
+            return divide(a,b);
     }
-    return result;
 }
