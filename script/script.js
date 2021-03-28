@@ -1,4 +1,5 @@
 const btnClear = document.getElementById('clear');
+const btnBackspace = document.getElementById('del');
 const btnEqual = document.getElementById('equal');
 const btnDecimal = document.getElementById('decimal');
 const displayContent = document.getElementById('display');
@@ -12,6 +13,14 @@ var first_op = null;
 var operator = null;
 var second_op = null;
 
+
+btnBackspace.addEventListener('click', e=>{
+    if(displayContent.value.length > 1){
+        displayContent.value = displayContent.value.slice(0, -1);
+    }else{
+        displayContent.value = 0
+    }
+});
 btnNumbers.forEach((button) => {
     button.addEventListener('click', e=> {   
         btnOperators.forEach(e => e.removeAttribute("disabled"))
@@ -45,6 +54,10 @@ btnOperators.forEach((button) => {
 });
 
 btnEqual.addEventListener('click', e=> { 
+    if(first_op === null && second_op === null){
+        displayContent.value;
+        return
+    }
     first_op = Number(first_op);
     second_op = displayContent.value;
     second_op = Number(second_op);
@@ -52,6 +65,7 @@ btnEqual.addEventListener('click', e=> {
     output = operate(first_op, second_op, operator);
     displayContent.value = output;
     btnEqual.setAttribute("disabled","disabled");
+    btnBackspace.setAttribute("disabled","disabled");
 });
 
 btnDecimal.addEventListener('click', e=> {
@@ -64,6 +78,7 @@ btnClear.addEventListener('click',clear);
 
 function clear(){
     btnEqual.removeAttribute("disabled");
+    btnBackspace.removeAttribute("disabled");
     displayContent.value = 0;
     first_op = null;
     second_op = null;
