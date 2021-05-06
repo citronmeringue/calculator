@@ -7,10 +7,9 @@
     border-style: double;
     border-color: blueviolet;
     height: 100%;
+    width: 30em;
     border-style: double;
     border-radius: 50px;
-    margin-right:30%;
-    margin-left:30%;
 }
 
 #ctn-display{
@@ -85,3 +84,10 @@ button:hover{
     background-color: #FFB3BA;
 }
 
+@media all and (min-width:800px){
+
+    #body-calc {
+        margin-right: 80em;
+        margin-left:80em;
+    }
+}
