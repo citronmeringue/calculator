@@ -2,12 +2,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     background-color: #F6F6EB;
     box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.19);
     border-style: double;
     border-color: blueviolet;
     height: 100%;
-    width: 30em;
+    width: 25em;
     border-style: double;
     border-radius: 50px;
 }
@@ -82,12 +83,4 @@ button{
 
 button:hover{
     background-color: #FFB3BA;
-}
-
-@media all and (min-width:800px){
-
-    #body-calc {
-        margin-right: 80em;
-        margin-left:80em;
-    }
 }
