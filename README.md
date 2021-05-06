@@ -1,1 +1,8 @@
-- clique plusieurs fois sur les operateurs, continue de calculer => il faut bloquer 
+## PROJECT CALCULATOR 
+
+# JAVASCRIPT 
+* using Vanilla JavaScript
+* HTML / CSS
+* DOM Manipulation
+
+[a link] (https://teamatcha.github.io/calculator/)
